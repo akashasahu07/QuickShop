@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup Form</title>
+    <link rel="stylesheet" href="{% static 'shop/styles/signup.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    <!-- credits to the writter @leonam-silva-de-souza -->
+    <div class="container">
+        <div class="form-box login">
+            <form action="#">
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="forgot-link">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <form action="#" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Registration</h1>
+                {% if message %}
+                <div class="alert alert-info" role="alert">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- First Name Input Field -->
+                <div class="input-box">
+                    <input type="text" placeholder="FirstName" name="first_name" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+
+                <!-- Last Name Input Field -->
+                <div class="input-box">
+                    <input type="text" placeholder="LastName" name="last_name" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+
+                <!-- Username Input Field -->
+                <div class="input-box">
+                    <input type="text" placeholder="Username" name="username" required>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+
+                <!-- Password Input Field -->
+                <div class="input-box">
+                    <input type="password" placeholder="Password" name="password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <button type="submit" class="btn">Register</button>
+            </form>
+        </div>
+
+        <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+                <h1>Hello, Welcome!</h1>
+                <p>Don't have an account?</p>
+                <button class="btn register-btn">Register</button>
+            </div>
+
+            <div class="toggle-panel toggle-right">
+                <h1>Welcome Back!</h1>
+                <p>Already have an account?</p>
+                <button class="btn login-btn"><a href="/login/" style="color: #fff;">Login</a></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'shop/s_script.js' %}"></script>
+</body>
+
+</html>
