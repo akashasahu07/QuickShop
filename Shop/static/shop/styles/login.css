@@ -183,16 +183,6 @@ form {
     transition-delay: .6s;
 }
 
-.toggle-panel.toggle-right {
-    right: -50%;
-    transition-delay: .6s;
-}
-
-.container.active .toggle-panel.toggle-right {
-    right: 0;
-    transition-delay: 1.2s;
-}
-
 .toggle-panel p {
     margin-bottom: 20px;
 }
@@ -246,15 +236,6 @@ form {
 
     .toggle-panel.toggle-left {
         top: 0;
-    }
-
-    .toggle-panel.toggle-right {
-        right: 0;
-        bottom: -30%;
-    }
-
-    .container.active .toggle-panel.toggle-right {
-        bottom: 0;
     }
 }
 

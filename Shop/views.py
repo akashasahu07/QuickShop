@@ -61,7 +61,7 @@ def register_page(request):
         return redirect('/register/')
     
     # Render the registration page template
-    return render(request, 'Shop/signup.html')
+    return render(request, 'Shop/register.html', {'show_register': True})
 
 # Define a View function for the Login Page
 def login_page(request):
@@ -73,7 +73,7 @@ def login_page(request):
         # Check if a user with the provided username exists
         if not User.objects.filter(username=username).exists():
             # Display an error message if the user does not exist
-            messages.error(request, 'Invalid username or password.')
+            messages.error(request, 'Invalid username.')
             return redirect('/login/')
         
         # Authenticate the user with the provided username and password
@@ -81,7 +81,7 @@ def login_page(request):
 
         if user is None:
             # Display an error message if authentication fails
-            messages.error(request, 'Invalid username or password.')
+            messages.error(request, 'Invalid password.')
             return redirect('/login/')
         else:
             # Log in the user if authentication is successful
@@ -90,4 +90,4 @@ def login_page(request):
             return redirect('shop:product_list')
         
     # Render the login page template
-    return render(request, 'Shop/signup.html')
+    return render(request, 'Shop/login.html')
