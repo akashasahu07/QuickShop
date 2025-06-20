@@ -67,7 +67,7 @@ form {
 
 .input-box {
     position: relative;
-    margin: 15px 0;
+    margin: 30px 0;
 }
 
 .input-box input {
@@ -190,6 +190,10 @@ form {
     .container.active .form-box {
         right: 0;
         bottom: 30%;
+    }
+
+    .input-box {
+        margin: 15px 0;
     }
 
     .toggle-box::before {

@@ -91,3 +91,10 @@ def login_page(request):
         
     # Render the login page template
     return render(request, 'Shop/login.html')
+
+# Define a View function for the Logout Page
+def signout(request):
+    # Log out the user
+    logout(request)
+    messages.success(request, 'You have been logged out successfully.')
+    return redirect('/login/')

@@ -1,0 +1,10 @@
+.shop-slider {
+    height: 400px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.shop-slider-img {
+    height: 500px;
+    object-fit: cover;
+}

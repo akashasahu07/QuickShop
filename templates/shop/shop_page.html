@@ -1,55 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Catalog</title>
-    <style>
-        /* Add CSS styles for flex container and items */
-        .product-list {
-            display: flex;
-            flex-wrap: wrap; /* Allow items to wrap to the next row if necessary */
-            justify-content: space-between; /* Space items evenly along the main axis */
-            list-style: none; /* Remove list styles */
-            padding: 0;
-        }
+<!-- templates/shop/shop_page.html -->
+{% extends 'shop/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}Product Catalog{% endblock %}
 
-        .product-item {
-            flex: 1; /* Grow to fill available space evenly */
-            max-width: 30%; /* Limit item width to avoid overcrowding */
-            margin: 10px; /* Add spacing between items */
-            border: 1px solid #ccc; /* Add a border for visual separation */
-            padding: 10px;
-            text-align: center;
-        }
+{% block carousel %}
+<div id="carouselExampleIndicators" class="carousel slide shop-slider">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'shop/images/slide1.jpg' %}" class="d-block w-100 shop-slider-img" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'shop/images/slide2.jpg' %}" class="d-block w-100 shop-slider-img" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'shop/images/slide3.jpg' %}" class="d-block w-100 shop-slider-img" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
-        /* Style the "Buy Now" button */
-        .buy-now-button {
-            display: block;
-            margin-top: 10px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Product Catalog</h1>
-    
-    <ul class="product-list">
-        {% for product in products %}
-            <li class="product-item">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200" height="150">
-                <h2>{{ product.name }}</h2>
-                <p>{{ product.description }}</p>
-                <p>Price: Rs{{ product.price }}</p>
-                <a href="#" class="buy-now-button">Buy Now</a>
-                <a class="buy-now-button" href="{% url 'shop:add_to_cart' product.id %}">Add to Cart</a>
+{% endblock %}
 
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% block content %}
+<h1>Product Catalog</h1>
+
+<ul class="product-list">
+    {% for product in products %}
+    <li class="product-item">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200" height="150">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <p>Price: &#8377; {{ product.price|floatformat:2|intcomma }}</p>
+        <a href="#" class="buy-now-button"><i class="fas fa-shopping-bag"></i>Buy Now</a>
+        <a class="buy-now-button" href="{% url 'shop:add_to_cart' product.id %}"><i class="fas fa-cart-plus"></i>Add to
+            Cart</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
